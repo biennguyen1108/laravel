@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\Maincontroller;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\Users\logincontroller;
-// use App\Http\Controllers\SumController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,3 +42,18 @@ Route::get('/tamgiac', [App\Http\Controllers\TamgiacController::class, 'area']);
 Route::post('/tinh', [App\Http\Controllers\TamgiacController::class, 'tamgiac']);
 Route::post('/tinh', [App\Http\Controllers\TamgiacController::class, 'tugiac']);
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// routes/web.php
+
+Route::post('/products', 'ProductController@store')->name('products.store');
+
+
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+// routes/web.php
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');

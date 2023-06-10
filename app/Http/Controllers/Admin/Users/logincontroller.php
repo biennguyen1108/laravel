@@ -17,8 +17,8 @@ class logincontroller extends Controller
     }
 
     public function store(Request $request)
-    {   
-       
+    {
+
         $this -> validate($request,[
             'email' => 'required|email:filter',
             'password' => 'required'
@@ -29,9 +29,9 @@ class logincontroller extends Controller
             'password' => $request ->input('password')
     ],  $request -> input('remember'))){
         return redirect() ->route('admin');
-
     }
 
+    
     Session::flash('error','email hoặc password không chính xác');
     return redirect() -> back();
     }
