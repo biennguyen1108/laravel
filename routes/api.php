@@ -2,6 +2,7 @@
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\UserController;
 
+use App\Http\Controllers\API\CartItemController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,10 @@ Route::post('/users', [UserController::class, 'store']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+
+Route::get('/cart-items', [CartItemController::class, 'index']);
+Route::post('/cart-items', [CartItemController::class, 'store']);
+Route::put('/cart-items/{id}', [CartItemController::class, 'update']);
+Route::delete('/cart-items/{id}', [CartItemController::class, 'destroy']);
+Route::put('/cart-items/{id}/quantity', [CartItemController::class, 'updateQuantity']);
