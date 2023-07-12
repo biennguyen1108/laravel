@@ -1,8 +1,10 @@
 <?php
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\UserController;
-
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\CartItemController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\EmailController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +33,7 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 
 Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
+// Route::post('/users', [UserController::class, 'store']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
@@ -42,3 +44,24 @@ Route::post('/cart-items', [CartItemController::class, 'store']);
 Route::put('/cart-items/{id}', [CartItemController::class, 'update']);
 Route::delete('/cart-items/{id}', [CartItemController::class, 'destroy']);
 Route::put('/cart-items/{id}/quantity', [CartItemController::class, 'updateQuantity']);
+
+
+Route::post('payments', [PaymentController::class, 'store']);
+Route::get('payments', [PaymentController::class, 'index']);
+
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/users', [UserController::class, 'checkEmail']);
+// Route::post('/users/reset-password', [UserController::class, 'resetPassword']);
+
+
+
+
+Route::post('/users/generate-otp', [UserController::class, 'generateOTP']);
+
+
+Route::post('/send-otp', [EmailController::class, 'sendOTP']);
+Route::post('/reset-password', [UserController::class, 'resetPassword']);
+
+Route::post('/users/verify-otp', [UserController::class, 'verifyOtp']);
+

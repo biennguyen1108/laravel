@@ -28,6 +28,9 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
+Route::post('/forgot-password', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
+
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/', function () {
